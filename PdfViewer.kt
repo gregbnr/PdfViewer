@@ -11,13 +11,11 @@ import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.GestureDetectorCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.alexvasilkov.gestures.views.GestureImageView
 import java.io.File
 
 
@@ -135,7 +133,8 @@ object ParcelFileDescriptorUtil {
     }
 }
 
-class ZoomableImageView(context: Context, attrs: AttributeSet? = null) : AppCompatImageView(context, attrs), GestureDetector.OnGestureListener,
+class ZoomableImageView(context: Context, attrs: AttributeSet? = null) :
+    AppCompatImageView(context, attrs), GestureDetector.OnGestureListener,
     ScaleGestureDetector.OnScaleGestureListener {
 
     private val matrixValues = FloatArray(9)
@@ -183,7 +182,12 @@ class ZoomableImageView(context: Context, attrs: AttributeSet? = null) : AppComp
         return true
     }
 
-    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
+    override fun onScroll(
+        e1: MotionEvent,
+        e2: MotionEvent,
+        distanceX: Float,
+        distanceY: Float
+    ): Boolean {
         matrix.postTranslate(-distanceX, -distanceY)
         invalidate()
         return true
